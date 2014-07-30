@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<application xmlns="http://ns.adobe.com/air/application/3.1">
+
+  <id>MainContent</id>
+
+  <versionNumber>1.0</versionNumber>
+
+  <filename>Main</filename>
+
+  <description />
+
+  <name>Main</name>
+
+  <copyright />
+
+  <initialWindow>
+    <content>Main.swf</content>
+    <systemChrome>standard</systemChrome>
+    <transparent>false</transparent>
+    <visible>true</visible>
+    <fullScreen>false</fullScreen>
+    <aspectRatio>portrait</aspectRatio>
+    <renderMode>auto</renderMode>
+    <maximizable>true</maximizable>
+    <minimizable>true</minimizable>
+    <resizable>true</resizable>
+
+	<x></x>
+	<y></y>
+	<minSize></minSize>
+	<maxSize></maxSize>
+  </initialWindow>
+
+  <icon>
+	<image16x16></image16x16>
+	<image32x32></image32x32>
+	<image48x48></image48x48>
+	<image128x128></image128x128>
+  </icon>
+
+  <customUpdateUI>false</customUpdateUI>
+
+  <allowBrowserInvocation>false</allowBrowserInvocation>
+
+</application>
