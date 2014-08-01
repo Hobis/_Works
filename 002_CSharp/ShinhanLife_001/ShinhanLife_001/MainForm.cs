@@ -246,19 +246,19 @@ namespace NewEdge_002
         {
             switch (pkdea.KeyCode)
             {
-                case Keys.Escape:
-                    {
-                        this.p_SetFullScreen(false);
+            case Keys.Escape:
+                {
+                    this.p_SetFullScreen(false);
 
-                        break;
-                    }
+                    break;
+                }
 
-                case Keys.F5:
-                    {
-                        this.p_Js_Call("p_reload", null);
+            case Keys.F5:
+                {
+                    this.p_Js_Call("p_reload", null);
 
-                        break;
-                    }
+                    break;
+                }
             }
         }
 
@@ -354,123 +354,125 @@ namespace NewEdge_002
         {
             switch (wmt)
             {
-                case Win_Message_Types.Win_Init:
+            case Win_Message_Types.Win_Init:
+                {
+                    //
+                    break;
+                }
+
+            case Win_Message_Types.Win_Set_Title:
+                {
+                    string t_name = (string)args[0];
+                    this.Text = t_name;
+
+                    break;
+                }
+
+            case Win_Message_Types.Win_Set_Visible:
+                {
+                    bool t_b = (bool)args[0];
+                    this.Visible = t_b;
+
+                    break;
+                }
+
+            case Win_Message_Types.Win_Set_MinSize:
+                {
+                    this.WindowState = FormWindowState.Normal;
+                    Size t_s = this.Size;
+                    t_s.Width = (int)args[0];
+                    t_s.Height = (int)args[1];
+                    this.MinimumSize = this.DefaultMaximumSize;
+                    this.ClientSize = t_s;
+                    this.MinimumSize = this.Size;
+
+                    break;
+                }
+
+
+            case Win_Message_Types.Win_Set_Location:
+                {
+                    this.WindowState = FormWindowState.Normal;
+                    Point t_p = this.Location;
+                    t_p.X = (int)args[0];
+                    t_p.Y = (int)args[1];
+                    this.Location = t_p;
+
+                    break;
+                }
+
+            case Win_Message_Types.Win_Resize_Max:
+                {
+                    this.WindowState = FormWindowState.Maximized;
+
+                    break;
+                }
+
+            case Win_Message_Types.Win_Resize_Min:
+                {
+                    this.WindowState = FormWindowState.Minimized;
+
+                    break;
+                }
+
+            case Win_Message_Types.Win_Resize_Normal:
+                {
+                    this.WindowState = FormWindowState.Normal;
+
+                    break;
+                }
+
+            case Win_Message_Types.Win_Resize_FullScreen:
+                {
+                    bool t_b = (bool)args[0];
+                    this.p_SetFullScreen(t_b);
+
+                    break;
+                }
+
+            case Win_Message_Types.Win_Resize:
+                {
+                    this.WindowState = FormWindowState.Normal;
+                    Size t_s = this.Size;
+                    t_s.Width = (int)args[0];
+                    t_s.Height = (int)args[1];
+                    this.ClientSize = t_s;
+
+                    break;
+                }
+
+            case Win_Message_Types.Win_Open:
+                {
+                    string t_basePath = Environment.CurrentDirectory;
+                    string t_filePath = (string)args[0];
+                    string t_path = Path.Combine(t_basePath, t_filePath);
+                    //Debug.Log("t_basePath: " + t_basePath);
+                    //Debug.Log("t_filePath: " + t_filePath);
+                    //Debug.Log("t_path: " + t_path);
+
+                    ProcessStartInfo t_psi = new ProcessStartInfo();
+                    t_psi.WorkingDirectory = Path.GetDirectoryName(t_path);
+                    //Debug.Log("t_psi.WorkingDirectory: " + t_psi.WorkingDirectory);
+                    t_psi.FileName = Path.GetFileName(t_path);
+                    //Debug.Log("t_psi.FileName: " + t_psi.FileName);
+
+                    Process.Start(t_psi);
+
+                    break;
+                }
+
+            case Win_Message_Types.Win_Center_Location:
+                {
+                    this.CenterToScreen();
+
+                    break;
+                }
+
+            case Win_Message_Types.Win_Copy_Folder:
+                {
+                    DialogResult t_dr = this.folderBrowserDialog1.ShowDialog();
+                    if (t_dr.Equals(DialogResult.OK))
                     {
-                        //
-                        break;
-                    }
-
-                case Win_Message_Types.Win_Set_Title:
-                    {
-                        string t_name = (string)args[0];
-                        this.Text = t_name;
-
-                        break;
-                    }
-
-                case Win_Message_Types.Win_Set_Visible:
-                    {
-                        bool t_b = (bool)args[0];
-                        this.Visible = t_b;
-
-                        break;
-                    }
-
-                case Win_Message_Types.Win_Set_MinSize:
-                    {
-                        this.WindowState = FormWindowState.Normal;
-                        Size t_s = this.Size;
-                        t_s.Width = (int)args[0];
-                        t_s.Height = (int)args[1];
-                        this.MinimumSize = this.DefaultMaximumSize;
-                        this.ClientSize = t_s;
-                        this.MinimumSize = this.Size;
-
-                        break;
-                    }
-
-
-                case Win_Message_Types.Win_Set_Location:
-                    {
-                        this.WindowState = FormWindowState.Normal;
-                        Point t_p = this.Location;
-                        t_p.X = (int)args[0];
-                        t_p.Y = (int)args[1];
-                        this.Location = t_p;
-
-                        break;
-                    }
-
-                case Win_Message_Types.Win_Resize_Max:
-                    {
-                        this.WindowState = FormWindowState.Maximized;
-
-                        break;
-                    }
-
-                case Win_Message_Types.Win_Resize_Min:
-                    {
-                        this.WindowState = FormWindowState.Minimized;
-
-                        break;
-                    }
-
-                case Win_Message_Types.Win_Resize_Normal:
-                    {
-                        this.WindowState = FormWindowState.Normal;
-
-                        break;
-                    }
-
-                case Win_Message_Types.Win_Resize_FullScreen:
-                    {
-                        bool t_b = (bool)args[0];
-                        this.p_SetFullScreen(t_b);
-
-                        break;
-                    }
-
-                case Win_Message_Types.Win_Resize:
-                    {
-                        this.WindowState = FormWindowState.Normal;
-                        Size t_s = this.Size;
-                        t_s.Width = (int)args[0];
-                        t_s.Height = (int)args[1];
-                        this.ClientSize = t_s;
-
-                        break;
-                    }
-
-                case Win_Message_Types.Win_Open:
-                    {
-                        string t_basePath = Environment.CurrentDirectory;
-                        string t_filePath = (string)args[0];
-                        string t_path = Path.Combine(t_basePath, t_filePath);
-                        //Debug.Log("t_basePath: " + t_basePath);
-                        //Debug.Log("t_filePath: " + t_filePath);
-                        //Debug.Log("t_path: " + t_path);
-
-                        ProcessStartInfo t_psi = new ProcessStartInfo();
-                        t_psi.WorkingDirectory = Path.GetDirectoryName(t_path);
-                        //Debug.Log("t_psi.WorkingDirectory: " + t_psi.WorkingDirectory);
-                        t_psi.FileName = Path.GetFileName(t_path);
-                        //Debug.Log("t_psi.FileName: " + t_psi.FileName);
-
-                        Process.Start(t_psi);
-
-                        break;
-                    }
-
-                case Win_Message_Types.Win_Center_Location:
-                    {
-                        this.CenterToScreen();
-
-                        break;
-                    }
-
-                case Win_Message_Types.Win_Copy_Folder:
-                    {
-                        DialogResult t_dr = this.folderBrowserDialog1.ShowDialog();
                         string t_path = Environment.CurrentDirectory;
                         //string t_path2 = this.folderBrowserDialog1.SelectedPath;
                         string t_path2 = Path.Combine(this.folderBrowserDialog1.SelectedPath, this.Text); ;
@@ -484,16 +486,17 @@ namespace NewEdge_002
                         catch (Exception)
                         {
                         }
-
-                        break;
                     }
 
-                case Win_Message_Types.Win_Close:
-                    {
-                        this.Close();
+                    break;
+                }
 
-                        break;
-                    }
+            case Win_Message_Types.Win_Close:
+                {
+                    this.Close();
+
+                    break;
+                }
             }
         }
     }

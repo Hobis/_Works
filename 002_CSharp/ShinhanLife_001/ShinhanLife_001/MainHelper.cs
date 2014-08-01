@@ -39,18 +39,27 @@ namespace NewEdge_002
     // #
     public static class FIO_Util
     {
-        public static void DirectoryCopy(string sourcePath, string destPath, bool isSubPaths, string shortcutName)
+        public static void DirectoryCopy(string sourcePath, string destPath, bool bSub, string shortcutName)
         {
-            _t = new Thread(new ThreadStart(delegate()
+            if (_t == null)
             {
-                p_DirectoryCopy_Core(sourcePath, destPath, isSubPaths, shortcutName);
-            }));
-            _t.Start();
+                _t = new Thread(new ThreadStart(delegate()
+                {
+                    p_DirectoryCopy_Core(sourcePath, destPath, bSub, shortcutName);
+                }));
+                _t.Start();
+
+                //MessageBox.Show("카피가 진행중 입니다. 잠시만 기다려 주세요.", "# 알림");
+            }
+            else
+            {
+                MessageBox.Show("이미 복사가가 진행중 입니다. 잠시후 다시 시도하여 주세요.", "# 알림");
+            }
         }
 
         private static Thread _t = null;
 
-        private static void p_DirectoryCopy_Core(string sourcePath, string destPath, bool isSubPaths, string shortcutName)
+        private static void p_DirectoryCopy_Core(string sourcePath, string destPath, bool bSub, string shortcutName)
         {
             // Get the subdirectories for the specified directory.
             DirectoryInfo t_dir = new DirectoryInfo(sourcePath);
@@ -66,29 +75,36 @@ namespace NewEdge_002
             // If the destination directory doesn't exist, create it. 
             if (!Directory.Exists(destPath))
             {
-                Directory.CreateDirectory(destPath);
+                try
+                {
+                    Directory.CreateDirectory(destPath);
+                }
+                catch (Exception) { }
             }
-            
-            //destPath = Path.Combine(destPath, shortcutName);
-            //Debug.Log("destPath: " + destPath);
-            //return;
-            //Directory.CreateDirectory(destPath);
 
             // Get the files in the directory and copy them to the new location.
             FileInfo[] t_files = t_dir.GetFiles();
             foreach (FileInfo t_file in t_files)
             {
                 string t_path = Path.Combine(destPath, t_file.Name);
-                t_file.CopyTo(t_path, false);
+                try
+                {
+                    t_file.CopyTo(t_path, false);
+                }
+                catch (Exception) { }
             }
             
             // If copying subdirectories, copy them and their contents to new location. 
-            if (isSubPaths)
+            if (bSub)
             {
                 foreach (DirectoryInfo t_subdir in t_dirs)
                 {
                     string t_path = Path.Combine(destPath, t_subdir.Name);
-                    DirectoryCopy(t_subdir.FullName, t_path, isSubPaths, null);
+                    try
+                    {
+                        p_DirectoryCopy_Core(t_subdir.FullName, t_path, bSub, null);
+                    }
+                    catch (Exception) { }
                 }
             }
 
@@ -96,7 +112,6 @@ namespace NewEdge_002
             {
                 string t_name = Path.GetFileName(Application.ExecutablePath);
                 string t_targetPath = Path.Combine(destPath, t_name);
-
                 //Debug.Log("t_targetPath: " + t_targetPath);
 
                 try
