@@ -1,0 +1,9 @@
+D:\07_VisualBasic\Workspace_2013\HB_CopyTest\HB_CopyTest\bin\Debug\HB_CopyTest.exe.config
+D:\07_VisualBasic\Workspace_2013\HB_CopyTest\HB_CopyTest\bin\Debug\HB_CopyTest.exe
+D:\07_VisualBasic\Workspace_2013\HB_CopyTest\HB_CopyTest\bin\Debug\HB_CopyTest.pdb
+D:\07_VisualBasic\Workspace_2013\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.csprojResolveAssemblyReference.cache
+D:\07_VisualBasic\Workspace_2013\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.Properties.Resources.resources
+D:\07_VisualBasic\Workspace_2013\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.csproj.GenerateResource.Cache
+D:\07_VisualBasic\Workspace_2013\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.exe
+D:\07_VisualBasic\Workspace_2013\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.pdb
+D:\07_VisualBasic\Workspace_2013\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.HB_ProgressForm1.resources
