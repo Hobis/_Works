@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace HB_CopyTest
 {
-    public static class HB_Starter
+    public static class MainStarter
     {
         /// <summary>
         /// The main entry point for the application.
@@ -14,11 +14,8 @@ namespace HB_CopyTest
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            HB_ProgressForm1 t_pf = new HB_ProgressForm1();
-            _pf = t_pf;
-            Application.Run(t_pf);
+            MainForm t_f = new MainForm();
+            Application.Run(t_f);
         }
-
-        internal static HB_ProgressForm1 _pf = null;
     }
 }

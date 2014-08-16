@@ -1,6 +1,6 @@
 ﻿namespace HB_CopyTest
 {
-    partial class HB_ProgressForm1
+    partial class HB_CopyFolderForm
     {
         /// <summary>
         /// Required designer variable.
@@ -72,6 +72,7 @@
             this.Controls.Add(this._pb1);
             this.Controls.Add(this._lb1);
             this.Name = "HB_ProgressForm1";
+            this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "확인창";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.p_This_FormClosed);

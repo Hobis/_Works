@@ -7,3 +7,13 @@ D:\07_VisualBasic\Workspace_2013\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.c
 D:\07_VisualBasic\Workspace_2013\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.exe
 D:\07_VisualBasic\Workspace_2013\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.pdb
 D:\07_VisualBasic\Workspace_2013\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.HB_ProgressForm1.resources
+D:\Git_HobisWork\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\bin\Debug\HB_CopyTest.exe.config
+D:\Git_HobisWork\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\bin\Debug\HB_CopyTest.exe
+D:\Git_HobisWork\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\bin\Debug\HB_CopyTest.pdb
+D:\Git_HobisWork\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.HB_CopyFolderForm.resources
+D:\Git_HobisWork\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.MainForm.resources
+D:\Git_HobisWork\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.Properties.Resources.resources
+D:\Git_HobisWork\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.csproj.GenerateResource.Cache
+D:\Git_HobisWork\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.exe
+D:\Git_HobisWork\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.pdb
+D:\Git_HobisWork\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.csprojResolveAssemblyReference.cache
