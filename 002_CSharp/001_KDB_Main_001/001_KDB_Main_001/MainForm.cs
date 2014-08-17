@@ -228,12 +228,13 @@ namespace NewEdge_002
         {
             switch (pkdea.KeyCode)
             {
+/*
             case Keys.Escape:
                 {
                     this.p_SetFullScreen(false);
 
                     break;
-                }
+                }*/
 
             case Keys.F5:
                 {
@@ -244,16 +245,17 @@ namespace NewEdge_002
             }
         }
 
+        /*
         // -
-        private const int WM_SYSCOMMAND = 0x112;
+        private const int _WM_SYSCOMMAND = 0x112;
         // -
-        private const int SC_MAXIMIZE = 0xf030;
+        private const int _SC_MAXIMIZE = 0xf030;
         // ::
         protected override void WndProc(ref Message m)
         {
-            if (m.Msg.Equals(WM_SYSCOMMAND))
+            if (m.Msg.Equals(_WM_SYSCOMMAND))
             {
-                if (m.WParam.ToInt32().Equals(SC_MAXIMIZE))
+                if (m.WParam.ToInt32().Equals(_SC_MAXIMIZE))
                 {
                     this.p_FullScreen_Toggle();
                     return;
@@ -261,7 +263,19 @@ namespace NewEdge_002
             }
 
             base.WndProc(ref m);
-        }
+        }*/
+
+        /*
+        private const int _CP_NOCLOSE_BUTTON = 0x200;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams t_cp = base.CreateParams;
+                t_cp.ClassStyle = t_cp.ClassStyle | _CP_NOCLOSE_BUTTON;
+                return t_cp;
+            }
+        }*/
 
         // :: 풀스크린 토글
         private void p_FullScreen_Toggle()

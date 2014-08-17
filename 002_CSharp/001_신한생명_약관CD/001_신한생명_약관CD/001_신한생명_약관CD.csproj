@@ -41,8 +41,10 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainForm.cs">
@@ -53,6 +55,12 @@
     </Compile>
     <Compile Include="MainHelper.cs" />
     <Compile Include="MainProgram.cs" />
+    <Compile Include="ProgressFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProgressFrom.Designer.cs">
+      <DependentUpon>ProgressFrom.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,9 +72,11 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ProgressFrom.resx">
+      <DependentUpon>ProgressFrom.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DeviceCenter.ico" />
     <Content Include="icon.ico" />
     <Content Include="js\jquery-1.11.1.min.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

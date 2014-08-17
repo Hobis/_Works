@@ -9,3 +9,4 @@ D:\Git_HobisWorks\_Works\002_CSharp\001_KDB_Main_001\001_KDB_Main_001\obj\Releas
 D:\Git_HobisWorks\_Works\002_CSharp\001_KDB_Main_001\001_KDB_Main_001\obj\Release\main.exe
 D:\Git_HobisWorks\_Works\002_CSharp\001_KDB_Main_001\001_KDB_Main_001\obj\Release\main.pdb
 D:\Git_HobisWorks\_Works\002_CSharp\001_KDB_Main_001\001_KDB_Main_001\bin\Release\root\Interop.IWshRuntimeLibrary.dll
+D:\Git_HobisWorks\_Works\002_CSharp\001_KDB_Main_001\001_KDB_Main_001\obj\Release\001_KDB_Main_001.csprojResolveAssemblyReference.cache

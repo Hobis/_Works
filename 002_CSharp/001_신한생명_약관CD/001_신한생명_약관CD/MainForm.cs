@@ -230,6 +230,9 @@ namespace NewEdge_002
         // :: 현재 폼 로드완료 (2빠따로 호출됨)
         private void p_This_Load(object sender, EventArgs ea)
         {
+            //ProgressFrom t_pf = new ProgressFrom();
+            //t_pf.ShowDialog(this);
+
             //Debug.Log("p_This_Load");
         }
 
