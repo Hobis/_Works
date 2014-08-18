@@ -4,12 +4,12 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace HB_CopyTest
+namespace NewEdge_002
 {
     // #
-    public sealed partial class HB_CopyFolderForm : Form
+    public sealed partial class CopyFolderForm : Form
     {
-        public HB_CopyFolderForm()
+        public CopyFolderForm()
         {
             InitializeComponent();
         }
@@ -39,21 +39,14 @@ namespace HB_CopyTest
         }
 
         // ::
-        public void OpenDialog(Form owner, string purposePath)
+        public void OpenDialog(Form owner, string targetPath, string purposePath, bool bSub, string shortcutName)
         {
-            string t_tp = Directory.GetCurrentDirectory();
-            string t_pp = Path.Combine(purposePath, owner.Text);
-            //MessageBox.Show("t_tp: " + t_tp);
-            //MessageBox.Show("t_pp: " + t_pp);
-
-            HB_CopyFolder.Start(this._pb1, t_tp, t_pp, true, true, this.p_CopyFolder_CallBack);
-
+            HB_CopyFolder.Start(this._pb1, targetPath, purposePath, bSub, shortcutName, this.p_CopyFolder_CallBack);
 
             this.ShowDialog(owner);
         }
 
     }
-
 
     // #
     public static class HB_CopyFolder
@@ -64,7 +57,7 @@ namespace HB_CopyTest
                             string targetPath,
                             string purposePath,
                             bool bSub,
-                            bool bShortcut,
+                            string shortcutName,
                             Action<object[]> callBack)
         {
             if (Directory.Exists(targetPath))
@@ -75,7 +68,7 @@ namespace HB_CopyTest
                     _targetPath = targetPath;
                     _purposePath = purposePath;
                     _bSub = bSub;
-                    _bShortcut = bShortcut;
+                    _shortcutName = shortcutName;
                     _callBack = callBack;
 
                     _th = new Thread(new ThreadStart(p_Start));
@@ -90,7 +83,7 @@ namespace HB_CopyTest
         private static string _targetPath = null;
         private static string _purposePath = null;
         private static bool _bSub = false;
-        private static bool _bShortcut = false;
+        private static string _shortcutName = null;
         private static Action<object[]> _callBack = null;
 
         private static List<string> _fps = null;
@@ -130,7 +123,7 @@ namespace HB_CopyTest
                 _targetPath = null;
                 _purposePath = null;
                 _bSub = false;
-                _bShortcut = false;
+                _shortcutName = null;
                 _callBack = null;
                 if (_fps != null)
                 {
@@ -191,12 +184,31 @@ namespace HB_CopyTest
                 }
             }
 
-            Thread.Sleep(1000);
-            if (_callBack != null)
+            if (_th != null)
             {
-                _callBack(new object[] { "End" });
-            }
+                // 바로가기 생성하기
+                if (_shortcutName != null)
+                {
+                    string t_name = Path.GetFileName(Application.ExecutablePath);
+                    string t_targetPath = Path.Combine(_purposePath, t_name);
+                    //Debug.Log("t_targetPath: " + t_targetPath);
 
+                    try
+                    {
+                        p_CreateShortcut(t_targetPath, _shortcutName);
+                    }
+                    catch (Exception)
+                    {
+                    }
+                }
+
+                // 마무리
+                Thread.Sleep(1000);
+                if (_callBack != null)
+                {
+                    _callBack(new object[] { "End" });
+                }
+            }
 
             p_WorkClear();
         }
@@ -221,5 +233,20 @@ namespace HB_CopyTest
                 //Console.WriteLine("e: " + e);
             }
         }
+
+        // ::
+        private static void p_CreateShortcut(string filePath, string shortchutName)
+        {
+            object t_dto = (object)"Desktop";
+            IWshRuntimeLibrary.WshShell t_ws = new IWshRuntimeLibrary.WshShell();
+            string t_sca = (string)t_ws.SpecialFolders.Item(ref t_dto) + "\\" + shortchutName + ".lnk";
+            IWshRuntimeLibrary.IWshShortcut t_wsc = (IWshRuntimeLibrary.IWshShortcut)t_ws.CreateShortcut(t_sca);
+            //t_wsc.Description = shortchutName;
+            //t_wsc.Hotkey = "Ctrl+Shift+N";
+            t_wsc.TargetPath = filePath;
+            t_wsc.WorkingDirectory = Path.GetDirectoryName(filePath);
+            t_wsc.Save();
+        }
+
     }
 }

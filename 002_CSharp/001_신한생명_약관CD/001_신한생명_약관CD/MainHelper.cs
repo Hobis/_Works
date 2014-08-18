@@ -36,6 +36,7 @@ namespace NewEdge_002
         }
     }
 
+/*
     // #
     public static class FIO_Util
     {
@@ -139,21 +140,21 @@ namespace NewEdge_002
             t_wsc.Save();
         }
 
-/*
-        private static void p_createShortcutToDesktop(string linkName)
-        {
-            string t_deskPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
-            string t_filePath = t_deskPath + "\\" + linkName + ".url";
-            string t_exePath = @"C:\Users\Hobis\Desktop\__test\main1.exe";
-            using (StreamWriter writer = new StreamWriter(t_filePath, true, Encoding.ASCII))
-            {
-                writer.WriteLine("[InternetShortcut]");
-                writer.WriteLine("URL=file:///" + t_exePath);
-                writer.WriteLine("IconIndex=0");
-                string icon = t_exePath.Replace('\\', '/');
-                writer.WriteLine("IconFile=" + icon);
-                writer.Flush();
-            }
-        }*/
-    }
+
+        //private static void p_createShortcutToDesktop(string linkName)
+        //{
+        //    string t_deskPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+        //    string t_filePath = t_deskPath + "\\" + linkName + ".url";
+        //    string t_exePath = @"C:\Users\Hobis\Desktop\__test\main1.exe";
+        //    using (StreamWriter writer = new StreamWriter(t_filePath, true, Encoding.ASCII))
+        //    {
+        //        writer.WriteLine("[InternetShortcut]");
+        //        writer.WriteLine("URL=file:///" + t_exePath);
+        //        writer.WriteLine("IconIndex=0");
+        //        string icon = t_exePath.Replace('\\', '/');
+        //        writer.WriteLine("IconFile=" + icon);
+        //        writer.Flush();
+        //    }
+        //}
+    }*/
 }

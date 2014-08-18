@@ -17,3 +17,6 @@ D:\Git_HobisWork\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest
 D:\Git_HobisWork\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.exe
 D:\Git_HobisWork\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.pdb
 D:\Git_HobisWork\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.csprojResolveAssemblyReference.cache
+D:\Git_HobisWorks\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\bin\Debug\HB_CopyTest.exe.config
+D:\Git_HobisWorks\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.exe
+D:\Git_HobisWorks\_Works\002_CSharp\HB_CopyTest\HB_CopyTest\obj\Debug\HB_CopyTest.pdb

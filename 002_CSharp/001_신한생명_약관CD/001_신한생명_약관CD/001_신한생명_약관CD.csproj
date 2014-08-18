@@ -55,11 +55,11 @@
     </Compile>
     <Compile Include="MainHelper.cs" />
     <Compile Include="MainProgram.cs" />
-    <Compile Include="ProgressFrom.cs">
+    <Compile Include="CopyFolderForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ProgressFrom.Designer.cs">
-      <DependentUpon>ProgressFrom.cs</DependentUpon>
+    <Compile Include="CopyFolderForm.Designer.cs">
+      <DependentUpon>CopyFolderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -69,11 +69,11 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CopyFolderForm.resx">
+      <DependentUpon>CopyFolderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ProgressFrom.resx">
-      <DependentUpon>ProgressFrom.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -16,29 +16,35 @@ namespace NewEdge_002
             this.p_InitOnce();
         }
 
+        // -
+        private CopyFolderForm _pucf = null;
+
         // :: 한번 초기화
         private void p_InitOnce()
         {
+            this._pucf = new CopyFolderForm();
+
+
             /*
-                        //
-                        string t_title = ConfigurationManager.AppSettings.Get("Title");
-                        //
-                        string t_maximumSize = ConfigurationManager.AppSettings.Get("MaximumSize");
-                        //
-                        string t_minimumSize = ConfigurationManager.AppSettings.Get("MinimumSize");
-                        //
-                        string t_clientSize = ConfigurationManager.AppSettings.Get("ClientSize");
-                        //
-                        string t_size = ConfigurationManager.AppSettings.Get("Size");
-                        //
-                        string t_windowState = ConfigurationManager.AppSettings.Get("WindowState");
-                        //
-                        string t_startPosition = ConfigurationManager.AppSettings.Get("StartPosition");
-                        //
-                        string t_formBorderStyle = ConfigurationManager.AppSettings.Get("FormBorderStyle");
-                        //
-                        string t_location = ConfigurationManager.AppSettings.Get("Location");
-                        */
+            //
+            string t_title = ConfigurationManager.AppSettings.Get("Title");
+            //
+            string t_maximumSize = ConfigurationManager.AppSettings.Get("MaximumSize");
+            //
+            string t_minimumSize = ConfigurationManager.AppSettings.Get("MinimumSize");
+            //
+            string t_clientSize = ConfigurationManager.AppSettings.Get("ClientSize");
+            //
+            string t_size = ConfigurationManager.AppSettings.Get("Size");
+            //
+            string t_windowState = ConfigurationManager.AppSettings.Get("WindowState");
+            //
+            string t_startPosition = ConfigurationManager.AppSettings.Get("StartPosition");
+            //
+            string t_formBorderStyle = ConfigurationManager.AppSettings.Get("FormBorderStyle");
+            //
+            string t_location = ConfigurationManager.AppSettings.Get("Location");
+            */
 
             //
             try
@@ -476,19 +482,22 @@ namespace NewEdge_002
                     DialogResult t_dr = this.folderBrowserDialog1.ShowDialog();
                     if (t_dr.Equals(DialogResult.OK))
                     {
-                        string t_path = Environment.CurrentDirectory;
-                        //string t_path2 = this.folderBrowserDialog1.SelectedPath;
-                        string t_path2 = Path.Combine(this.folderBrowserDialog1.SelectedPath, this.Text); ;
-                        //MessageBox.Show("t_path: " + t_path);
-                        //MessageBox.Show("t_path2: " + t_path2);
+                        string t_scn = this.Text;
+                        string t_tp = Environment.CurrentDirectory;
+                        string t_pp = Path.Combine(this.folderBrowserDialog1.SelectedPath, t_scn);
+                        //MessageBox.Show("t_tp: " + t_tp);
+                        //MessageBox.Show("t_pp: " + t_pp);
 
+                        this._pucf.OpenDialog(this, t_tp, t_pp, true, t_scn);
+
+/*
                         try
                         {
                             FIO_Util.DirectoryCopy(t_path, t_path2, true, this.Text);
                         }
                         catch (Exception)
                         {
-                        }
+                        }*/
                     }
 
                     break;
