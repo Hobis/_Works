@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("KDB 대우증권 다문화 자녀 교육")]
-[assembly: AssemblyDescription("KDB 대우증권 사회공헌")]
+[assembly: AssemblyTitle("Base64Tool")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("KDB 대우증권")]
-[assembly: AssemblyProduct("KDB 대우증권 다문화 자녀 교육")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("Base64Tool")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(true)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("f09d5951-bf1c-4a99-a89e-97e56515fbf5")]
+[assembly: Guid("abcf3090-e83b-44d5-9d25-c8bbeca9679a")]
 
 // Version information for an assembly consists of the following four values:
 //

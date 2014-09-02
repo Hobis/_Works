@@ -24,6 +24,7 @@ namespace NewEdge_002
         Win_Center_Location,
         Win_Copy_Folder,
         Win_Close,
+        Win_Save_Base64ToBinary
     }
 
     // #

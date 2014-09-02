@@ -192,22 +192,6 @@ namespace NewEdge_002
         }
 
         // -
-        private bool _bFirst = true;
-        // ::
-        protected override void SetVisibleCore(bool b)
-        {
-            if (this._bFirst)
-            {
-                base.SetVisibleCore(false);
-                this._bFirst = false;
-            }
-            else
-            {
-                base.SetVisibleCore(b);
-            }
-        }
-
-        // -
         private const string _TakeOver = "?type=!__%40%23%24takeOver";
         // :: 현재 폼 로드완료 (2빠따로 호출됨)
         private void p_This_Load(object sender, EventArgs ea)
@@ -219,8 +203,6 @@ namespace NewEdge_002
         private void p_webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs ebdcea)
         {
             //Debug.Log("p_webBrowser1_DocumentCompleted");
-
-            this.SetVisibleCore(true);
         }
 
         // :: 웹브라우저 키다운 핸들러
@@ -490,6 +472,13 @@ namespace NewEdge_002
             case Win_Message_Types.Win_Close:
                 {
                     this.Close();
+
+                    break;
+                }
+
+            case Win_Message_Types.Win_Save_Base64ToBinary:
+                {
+
 
                     break;
                 }
