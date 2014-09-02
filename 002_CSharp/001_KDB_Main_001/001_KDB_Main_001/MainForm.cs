@@ -313,6 +313,65 @@ namespace NewEdge_002
             }
         }
 
+        // ::
+        public void Js_Open_SoundSaveFolder()
+        {
+            string t_basePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            t_basePath = Path.Combine(t_basePath, "KDB_녹음파일저장");
+            if (Directory.Exists(t_basePath))
+            {
+                Process.Start(t_basePath);
+            }            
+        }
+
+        // ::
+        public void Js_Save_Base64ToBinary(string base64Str, string saveName)
+        {
+            this.Enabled = false;
+
+            byte[] t_bytes = null;
+            FileStream t_wfs = null;
+
+            try
+            {
+                t_bytes = Convert.FromBase64String(base64Str);
+            }
+            catch (Exception)
+            {
+            }
+
+            if (t_bytes != null)
+            {
+                try
+                {
+                    string t_basePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                    t_basePath = Path.Combine(t_basePath, "KDB_녹음파일저장");
+                    if (!Directory.Exists(t_basePath))
+                    {
+                        Directory.CreateDirectory(t_basePath);
+                    }
+
+                    string t_saveFile = Path.Combine(t_basePath, saveName);
+                    //MessageBox.Show("대체 위치가 어디여? " + t_saveFile);
+                    //
+                    t_wfs = File.OpenWrite(t_saveFile);
+                    t_wfs.Write(t_bytes, 0, t_bytes.Length);
+
+                    //this.p_Js_Call("alert", new object[] {"녹음이 저장되었습니다."});
+                    MessageBox.Show("녹음이 저장되었습니다.", "알림");
+                }
+                catch (Exception)
+                {
+                }
+            }
+
+            if (t_wfs != null)
+                t_wfs.Close();
+
+
+            this.Enabled = true;
+        }
+
         // :: Js 호출 받음 노멀
         public void Js_CallBack_n(string type)
         {
