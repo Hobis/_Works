@@ -1,4 +1,4 @@
-﻿namespace NewEdge_002
+﻿namespace KDB
 {
     partial class MainForm
     {

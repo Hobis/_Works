@@ -1,43 +1,49 @@
 ﻿using IWshRuntimeLibrary;
 using System;
+using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.IO;
-using System.Text;
 using System.Threading;
+using System.Web;
 using System.Windows.Forms;
 
-namespace NewEdge_002
+namespace KDB
 {
-    // #
-    public enum Win_Message_Types
+    // # 유틸리티 모음
+    public static class Utils
     {
-        Win_Init,
-        Win_Set_Title,
-        Win_Set_Visible,
-        Win_Set_MinSize,
-        Win_Set_Location,
-        Win_Resize_Max,
-        Win_Resize_Min,
-        Win_Resize_Normal,
-        Win_Resize_FullScreen,
-        Win_Resize,
-        Win_Open,
-        Win_Center_Location,
-        Win_Copy_Folder,
-        Win_Close,
-        Win_Save_Base64ToBinary
-    }
-
-    // #
-    public static class Debug
-    {
-        private const string _frontMsg = "# [hb] ";
-        public static void Log(string msg)
+        // :: pObj -> qStr
+        public static string convert_qStr(NameValueCollection nvc)
         {
-            MessageBox.Show(_frontMsg + msg);
+            string t_rv = null;
+
+            List<string> t_list = new List<string>();
+            foreach (string t_name in nvc)
+            {
+                string t_value = nvc[t_name];
+                t_value = HttpUtility.UrlEncode(t_value);
+                string t_str = string.Concat(t_name, "=", t_value);
+                t_list.Add(t_str);
+            }
+
+            if (t_list.Count > 0)
+            {
+                t_rv = string.Join("&", t_list.ToArray());
+            }
+
+            return t_rv;
+        }
+
+
+        private const string _Caption = "알림";
+        // ::
+        public static void MsgBox(string str)
+        {
+            MessageBox.Show(str, _Caption);
         }
     }
 
-    // #
+    // # File Input Output Util
     public static class FIO_Util
     {
         public static void DirectoryCopy(string sourcePath, string destPath, bool bSub, string shortcutName)

@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Specialized;
 using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Web;
 using System.Windows.Forms;
 
-namespace NewEdge_002
+namespace KDB
 {
     public sealed partial class MainForm : Form
     {
@@ -22,7 +24,7 @@ namespace NewEdge_002
             string t_startPath = Path.Combine(Environment.CurrentDirectory, "root");
             Environment.CurrentDirectory = t_startPath;
 
-            //
+            // 타이틀 설정
             try
             {
                 string t_v = ConfigurationManager.AppSettings.Get("Title");
@@ -35,7 +37,7 @@ namespace NewEdge_002
             {
             }
 
-            //
+            // 최대화 사이즈 설정
             try
             {
                 string t_v = ConfigurationManager.AppSettings.Get("MaximumSize");
@@ -52,7 +54,7 @@ namespace NewEdge_002
             {
             }
 
-            //
+            // 최소화 사이즈 설정
             try
             {
                 string t_v = ConfigurationManager.AppSettings.Get("MinimumSize");
@@ -69,7 +71,7 @@ namespace NewEdge_002
             {
             }
 
-            //
+            // 사이즈 설정
             try
             {
                 string t_v = ConfigurationManager.AppSettings.Get("Size");
@@ -86,7 +88,7 @@ namespace NewEdge_002
             {
             }
 
-            //
+            // 클라이언트 사이즈 설정
             try
             {
                 string t_v = ConfigurationManager.AppSettings.Get("ClientSize");
@@ -103,7 +105,7 @@ namespace NewEdge_002
             {
             }
 
-            //
+            // 위치 설정
             try
             {
                 string t_v = ConfigurationManager.AppSettings.Get("Location");
@@ -121,7 +123,7 @@ namespace NewEdge_002
             {
             }
 
-            //
+            // 윈도우 상태 설정
             try
             {
                 string t_v = ConfigurationManager.AppSettings.Get("WindowState");
@@ -135,7 +137,7 @@ namespace NewEdge_002
             {
             }
 
-            //
+            // 폼보더 스타일 설정
             try
             {
                 string t_v = ConfigurationManager.AppSettings.Get("FormBorderStyle");
@@ -149,7 +151,7 @@ namespace NewEdge_002
             {
             }
 
-            //
+            // 시작 포지션 설정
             try
             {
                 string t_v = ConfigurationManager.AppSettings.Get("StartPosition");
@@ -163,7 +165,7 @@ namespace NewEdge_002
             {
             }
 
-            //
+            // 윈도우 전체화 설정
             try
             {
                 string t_v = ConfigurationManager.AppSettings.Get("WindowFullScreen");
@@ -171,6 +173,19 @@ namespace NewEdge_002
                 {
                     bool t_b = bool.Parse(t_v);
                     this.p_SetFullScreen(t_b);
+                }
+            }
+            catch (Exception)
+            {
+            }
+
+            // 녹음파일저장폴더이름
+            try
+            {
+                string t_v = ConfigurationManager.AppSettings.Get("RecordSaveFolderName");
+                if (!string.IsNullOrEmpty(t_v))
+                {
+                    this._saveFolderName = t_v;
                 }
             }
             catch (Exception)
@@ -196,13 +211,13 @@ namespace NewEdge_002
         // :: 현재 폼 로드완료 (2빠따로 호출됨)
         private void p_This_Load(object sender, EventArgs ea)
         {
-            //Debug.Log("p_This_Load");
+            //Utils.Log("p_This_Load");
         }
 
         // :: 웹브라우저 Document 로드완료 (1빠따로 호출됨)
         private void p_webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs ebdcea)
         {
-            //Debug.Log("p_webBrowser1_DocumentCompleted");
+            //Utils.Log("p_webBrowser1_DocumentCompleted");
         }
 
         // :: 웹브라우저 키다운 핸들러
@@ -210,7 +225,7 @@ namespace NewEdge_002
         {
             switch (pkdea.KeyCode)
             {
-/*
+            /*
             case Keys.Escape:
                 {
                     this.p_SetFullScreen(false);
@@ -220,7 +235,10 @@ namespace NewEdge_002
 
             case Keys.F5:
                 {
-                    this.p_Js_Call("p_reload", null);
+                    NameValueCollection t_nvc = new NameValueCollection();
+                    t_nvc.Add("type", "reload");
+                    this.p_Web_Call(t_nvc);
+
 
                     break;
                 }
@@ -301,247 +319,265 @@ namespace NewEdge_002
             }
         }
 
-        // :: Js 호출 보냄
-        private void p_Js_Call(string funcName, object[] args)
+        // -
+        private const string _Web_CallName = "p_web_callBack";
+        // :: Web 호출
+        private void p_Web_Call(NameValueCollection nvc)
         {
+            string t_qStr = Utils.convert_qStr(nvc);
+
             try
             {
-                this.webBrowser1.Document.InvokeScript(funcName, args);
+                this.webBrowser1.Document.InvokeScript(_Web_CallName, new object[] {t_qStr});
             }
             catch (Exception)
             {
             }
         }
 
-        // ::
-        public void Js_Open_SoundSaveFolder()
+
+        // -
+        private string _saveFolderName = "KDB_녹음파일저장";
+
+        // :: Form 콜백받음
+        /*
+        Form_Init
+        Form_Close
+        Form_Set_Title
+        Form_Set_Visible
+        Form_Set_Location
+        Form_Center_Location
+        Form_Resize_FullScreen
+        Form_Resize_Min
+        Form_Resize_Normal
+        Form_Resize
+        Form_File_Open
+        Form_File_Base64ToBinarySave
+        Form_Folder_Copy
+        */
+        public void Form_CallBack(string qStr)
         {
-            string t_basePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            t_basePath = Path.Combine(t_basePath, "KDB_녹음파일저장");
-            if (Directory.Exists(t_basePath))
-            {
-                Process.Start(t_basePath);
-            }            
-        }
+            NameValueCollection t_nvc = HttpUtility.ParseQueryString(qStr);
+            string t_type = t_nvc["type"];
+            //Utils.MsgBox("t_type: " + t_type);
 
-        // ::
-        public void Js_Save_Base64ToBinary(string base64Str, string saveName)
-        {
-            this.Enabled = false;
-
-            byte[] t_bytes = null;
-            FileStream t_wfs = null;
-
-            try
+            switch (t_type)
             {
-                t_bytes = Convert.FromBase64String(base64Str);
-            }
-            catch (Exception)
-            {
-            }
-
-            if (t_bytes != null)
-            {
-                try
-                {
-                    string t_basePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-                    t_basePath = Path.Combine(t_basePath, "KDB_녹음파일저장");
-                    if (!Directory.Exists(t_basePath))
+                // Form 초기화
+                case "Form_Init":
                     {
-                        Directory.CreateDirectory(t_basePath);
+                        //
+                        break;
                     }
 
-                    string t_saveFile = Path.Combine(t_basePath, saveName);
-                    //MessageBox.Show("대체 위치가 어디여? " + t_saveFile);
-                    //
-                    t_wfs = File.OpenWrite(t_saveFile);
-                    t_wfs.Write(t_bytes, 0, t_bytes.Length);
-
-                    //this.p_Js_Call("alert", new object[] {"녹음이 저장되었습니다."});
-                    MessageBox.Show("녹음이 저장되었습니다.", "알림");
-                }
-                catch (Exception)
-                {
-                }
-            }
-
-            if (t_wfs != null)
-                t_wfs.Close();
-
-
-            this.Enabled = true;
-        }
-
-        // :: Js 호출 받음 노멀
-        public void Js_CallBack_n(string type)
-        {
-            Win_Message_Types t_wmt = (Win_Message_Types)Enum.Parse(typeof(Win_Message_Types), type);
-            this.p_Js_CallBack_Core(t_wmt, null);
-        }
-
-        // :: Js 호출 받음
-        public void Js_CallBack(string type, object[] args)
-        {
-            Win_Message_Types t_wmt = (Win_Message_Types)Enum.Parse(typeof(Win_Message_Types), type);
-            this.p_Js_CallBack_Core(t_wmt, args);
-        }
-
-        // :: Js 호출 받음 핵심
-        private void p_Js_CallBack_Core(Win_Message_Types wmt, object[] args)
-        {
-            switch (wmt)
-            {
-            case Win_Message_Types.Win_Init:
-                {
-                    //
-                    break;
-                }
-
-            case Win_Message_Types.Win_Set_Title:
-                {
-                    string t_name = (string)args[0];
-                    this.Text = t_name;
-
-                    break;
-                }
-
-            case Win_Message_Types.Win_Set_Visible:
-                {
-                    bool t_b = (bool)args[0];
-                    this.Visible = t_b;
-
-                    break;
-                }
-
-            case Win_Message_Types.Win_Set_MinSize:
-                {
-                    this.WindowState = FormWindowState.Normal;
-                    Size t_s = this.Size;
-                    t_s.Width = (int)args[0];
-                    t_s.Height = (int)args[1];
-                    this.MinimumSize = this.DefaultMaximumSize;
-                    this.ClientSize = t_s;
-                    this.MinimumSize = this.Size;
-
-                    break;
-                }
-
-
-            case Win_Message_Types.Win_Set_Location:
-                {
-                    this.WindowState = FormWindowState.Normal;
-                    Point t_p = this.Location;
-                    t_p.X = (int)args[0];
-                    t_p.Y = (int)args[1];
-                    this.Location = t_p;
-
-                    break;
-                }
-
-            case Win_Message_Types.Win_Resize_Max:
-                {
-                    this.WindowState = FormWindowState.Maximized;
-
-                    break;
-                }
-
-            case Win_Message_Types.Win_Resize_Min:
-                {
-                    this.WindowState = FormWindowState.Minimized;
-
-                    break;
-                }
-
-            case Win_Message_Types.Win_Resize_Normal:
-                {
-                    this.WindowState = FormWindowState.Normal;
-
-                    break;
-                }
-
-            case Win_Message_Types.Win_Resize_FullScreen:
-                {
-                    bool t_b = (bool)args[0];
-                    this.p_SetFullScreen(t_b);
-
-                    break;
-                }
-
-            case Win_Message_Types.Win_Resize:
-                {
-                    this.WindowState = FormWindowState.Normal;
-                    Size t_s = this.Size;
-                    t_s.Width = (int)args[0];
-                    t_s.Height = (int)args[1];
-                    this.ClientSize = t_s;
-
-                    break;
-                }
-
-            case Win_Message_Types.Win_Open:
-                {
-                    string t_basePath = Environment.CurrentDirectory;
-                    string t_filePath = (string)args[0];
-                    string t_path = Path.Combine(t_basePath, t_filePath);
-                    //Debug.Log("t_basePath: " + t_basePath);
-                    //Debug.Log("t_filePath: " + t_filePath);
-                    //Debug.Log("t_path: " + t_path);
-
-                    ProcessStartInfo t_psi = new ProcessStartInfo();
-                    t_psi.WorkingDirectory = Path.GetDirectoryName(t_path);
-                    //Debug.Log("t_psi.WorkingDirectory: " + t_psi.WorkingDirectory);
-                    t_psi.FileName = Path.GetFileName(t_path);
-                    //Debug.Log("t_psi.FileName: " + t_psi.FileName);
-
-                    Process.Start(t_psi);
-
-                    break;
-                }
-
-            case Win_Message_Types.Win_Center_Location:
-                {
-                    this.CenterToScreen();
-
-                    break;
-                }
-
-            case Win_Message_Types.Win_Copy_Folder:
-                {
-                    DialogResult t_dr = this.folderBrowserDialog1.ShowDialog();
-                    if (t_dr.Equals(DialogResult.OK))
+                // Form 닫기
+                case "Form_Close":
                     {
-                        string t_path = Environment.CurrentDirectory;
-                        //string t_path2 = this.folderBrowserDialog1.SelectedPath;
-                        string t_path2 = Path.Combine(this.folderBrowserDialog1.SelectedPath, this.Text); ;
-                        //MessageBox.Show("t_path: " + t_path);
-                        //MessageBox.Show("t_path2: " + t_path2);
+                        this.Close();
+                        //
+                        break;
+                    }
+
+                // Form 타이틀 변경
+                case "Form_Set_Title":
+                    {
+                        string t_title = t_nvc["title"];
+                        this.Text = t_title;
+                        //
+                        break;
+                    }
+
+                // Form 보이기 변경
+                case "Form_Set_Visible":
+                    {
+                        bool t_b = bool.Parse(t_nvc["b"]);
+                        this.Visible = t_b;
+                        //
+                        break;
+                    }
+ 
+                // Form 위치 변경
+                case "Form_Set_Location":
+                    {
+                        this.WindowState = FormWindowState.Normal;
+                        Point t_p = this.Location;
+                        t_p.X = int.Parse(t_nvc["x"]);
+                        t_p.Y = int.Parse(t_nvc["y"]);
+                        this.Location = t_p;
+                        //
+                        break;
+                    }
+
+                // Form 위치 가운데로
+                case "Form_Center_Location":
+                    {
+                        this.CenterToScreen();
+                        //
+                        break;
+                    }
+
+                // Form 사이즈 풀스크린
+                case "Form_Resize_FullScreen":
+                    {
+                        bool t_b = bool.Parse(t_nvc["b"]);
+                        this.p_SetFullScreen(t_b);
+                        //
+                        break;
+                    }
+
+                // Form 사이즈 최대화
+                case "Form_Resize_Max":
+                    {
+                        this.WindowState = FormWindowState.Maximized;
+                        //
+                        break;
+                    }
+
+                // Form 사이즈 최소화
+                case "Form_Resize_Min":
+                    {
+                        this.WindowState = FormWindowState.Minimized;                        
+                        //
+                        break;
+                    }
+
+                // Form 사이즈 노멀
+                case "Form_Resize_Normal":
+                    {
+                        this.WindowState = FormWindowState.Normal;
+                        //
+                        break;
+                    }
+
+                // Form 사이즈 변경
+                case "Form_Resize":
+                    {
+                        this.WindowState = FormWindowState.Normal;
+                        Size t_s = this.Size;
+                        t_s.Width = int.Parse(t_nvc["w"]);
+                        t_s.Height = int.Parse(t_nvc["h"]);
+                        this.ClientSize = t_s;
+                        //
+                        break;
+                    }
+
+                // Form 파일 열기
+                case "Form_File_Open":
+                    {
+                        string t_path = t_nvc["filePath"];
+                        //Utils.Log("t_path: " + t_path);
+
+                        if (string.IsNullOrEmpty(t_path)) return;
+
+                        //
+                        ProcessStartInfo t_psi = new ProcessStartInfo();
+                        t_psi.WorkingDirectory = Path.GetDirectoryName(t_path);
+                        //Utils.Log("t_psi.WorkingDirectory: " + t_psi.WorkingDirectory);
+
+                        t_psi.FileName = Path.GetFileName(t_path);
+                        //Utils.Log("t_psi.FileName: " + t_psi.FileName);
+
+                        Process.Start(t_psi);
+                        //
+                        break;
+                    }
+
+                // Form Base64String을 Binary로 저장
+                case "Form_File_Base64ToBinarySave":
+                    {
+                        string t_base64Str = t_nvc["base64Str"];
+                        string t_saveName = t_nvc["saveName"];
+
+                        if (string.IsNullOrEmpty(t_base64Str) ||
+                            string.IsNullOrEmpty(t_saveName)) return;
+
+                        //
+                        this.Enabled = false;
+                        
+                        byte[] t_bytes = null;
+                        FileStream t_wfs = null;
 
                         try
                         {
-                            FIO_Util.DirectoryCopy(t_path, t_path2, true, this.Text);
+                            t_bytes = Convert.FromBase64String(t_base64Str);
                         }
                         catch (Exception)
                         {
                         }
+
+                        if (t_bytes != null)
+                        {
+                            try
+                            {
+                                string t_basePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                                t_basePath = Path.Combine(t_basePath, this._saveFolderName);
+                                if (!Directory.Exists(t_basePath))
+                                {
+                                    Directory.CreateDirectory(t_basePath);
+                                }
+
+                                string t_saveFile = Path.Combine(t_basePath, t_saveName);
+                                //Util.MegBox("대체 위치가 어디여? " + t_saveFile);
+                                //
+                                t_wfs = File.OpenWrite(t_saveFile);
+                                t_wfs.Write(t_bytes, 0, t_bytes.Length);
+
+                                Utils.MsgBox("녹음이 저장되었습니다.");
+                            }
+                            catch (Exception)
+                            {
+                            }
+                        }
+
+                        if (t_wfs != null)
+                            t_wfs.Close();
+
+
+                        this.Enabled = true;
+                        //
+                        break;
                     }
 
-                    break;
-                }
+                // Form 폴더 카피
+                case "Form_Folder_Copy":
+                    {
+                        DialogResult t_dr = this.folderBrowserDialog1.ShowDialog();
+                        if (t_dr.Equals(DialogResult.OK))
+                        {
+                            string t_path = Environment.CurrentDirectory;
+                            //string t_path2 = this.folderBrowserDialog1.SelectedPath;
+                            string t_path2 = Path.Combine(this.folderBrowserDialog1.SelectedPath, this.Text); ;
+                            //Utils.Log("t_path: " + t_path);
+                            //Utils.Log("t_path2: " + t_path2);
 
-            case Win_Message_Types.Win_Close:
-                {
-                    this.Close();
+                            try
+                            {
+                                FIO_Util.DirectoryCopy(t_path, t_path2, true, this.Text);
+                            }
+                            catch (Exception)
+                            {
+                            }
+                        }
+                        //
+                        break;
+                    }
 
-                    break;
-                }
-
-            case Win_Message_Types.Win_Save_Base64ToBinary:
-                {
-
-
-                    break;
-                }
+                // Form 녹음 사운드 저장 폴더 열기
+                case "Form_Folder_Open_SoundSave":
+                    {
+                        string t_basePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+                        //string t_saveFolder = this.Text;
+                        string t_saveFolder = this._saveFolderName;
+                        t_basePath = Path.Combine(t_basePath, t_saveFolder);
+                        if (Directory.Exists(t_basePath))
+                        {
+                            Process.Start(t_basePath);
+                        }
+                        //
+                        break;
+                    }
             }
+
         }
     }
 }
