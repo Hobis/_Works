@@ -7,7 +7,7 @@ using System.IO;
 using System.Web;
 using System.Windows.Forms;
 
-namespace KDB
+namespace KDB_Edge2
 {
     public sealed partial class MainForm : Form
     {
@@ -21,8 +21,11 @@ namespace KDB
         // :: 한번 초기화
         private void p_InitOnce()
         {
-            string t_startPath = Path.Combine(Environment.CurrentDirectory, "root");
-            Environment.CurrentDirectory = t_startPath;
+            //Utils.regCheck_ie();
+
+
+            //string t_startPath = Path.Combine(Environment.CurrentDirectory, "root");
+            //Environment.CurrentDirectory = t_startPath;
 
             // 타이틀 설정
             try
@@ -202,8 +205,11 @@ namespace KDB
             this.webBrowser1.WebBrowserShortcutsEnabled = false;
 
             string t_name = Path.GetFileNameWithoutExtension(Application.ExecutablePath);
-            string t_src = Path.Combine(Environment.CurrentDirectory, t_name + ".html" + _TakeOver);
+            string t_src = Path.Combine(Environment.CurrentDirectory, "root");
+            t_src = Path.Combine(t_src, t_name + ".html" + _TakeOver);
             this.webBrowser1.Navigate(t_src);
+
+            this._pucf = new CopyFolderForm();
         }
 
         // -
@@ -338,6 +344,11 @@ namespace KDB
 
         // -
         private string _saveFolderName = "KDB_녹음파일저장";
+
+
+        // -
+        private CopyFolderForm _pucf = null;
+
 
         // :: Form 콜백받음
         /*
@@ -545,19 +556,13 @@ namespace KDB
                         DialogResult t_dr = this.folderBrowserDialog1.ShowDialog();
                         if (t_dr.Equals(DialogResult.OK))
                         {
-                            string t_path = Environment.CurrentDirectory;
-                            //string t_path2 = this.folderBrowserDialog1.SelectedPath;
-                            string t_path2 = Path.Combine(this.folderBrowserDialog1.SelectedPath, this.Text); ;
-                            //Utils.Log("t_path: " + t_path);
-                            //Utils.Log("t_path2: " + t_path2);
+                            string t_scn = this.Text;
+                            string t_tp = Environment.CurrentDirectory;
+                            string t_pp = Path.Combine(this.folderBrowserDialog1.SelectedPath, t_scn);
+                            //MessageBox.Show("t_tp: " + t_tp);
+                            //MessageBox.Show("t_pp: " + t_pp);
 
-                            try
-                            {
-                                FIO_Util.DirectoryCopy(t_path, t_path2, true, this.Text);
-                            }
-                            catch (Exception)
-                            {
-                            }
+                            this._pucf.OpenDialog(this, t_tp, t_pp, true, t_scn);
                         }
                         //
                         break;

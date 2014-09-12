@@ -1,4 +1,4 @@
-﻿namespace KDB
+﻿namespace KDB_Edge2
 {
     partial class MainForm
     {

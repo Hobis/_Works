@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace KDB
+namespace KDB_Edge2
 {
     public static class MainProgram
     {

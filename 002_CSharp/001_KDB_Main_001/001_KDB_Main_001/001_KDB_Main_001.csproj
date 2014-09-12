@@ -7,7 +7,7 @@
     <ProjectGuid>{7A422E22-42DD-435A-ABDA-67CCA17C9121}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KDB</RootNamespace>
+    <RootNamespace>KDB_Edge2</RootNamespace>
     <AssemblyName>main</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -66,6 +66,13 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CopyFolderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CopyFolderForm.designer.cs">
+      <DependentUpon>CopyFolderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="InternetExplorerBrowserEmulation.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +89,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CopyFolderForm.resx">
+      <DependentUpon>CopyFolderForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

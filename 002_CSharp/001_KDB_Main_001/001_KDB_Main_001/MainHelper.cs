@@ -1,4 +1,5 @@
-﻿using IWshRuntimeLibrary;
+﻿using Cyotek.ApplicationServices.Windows.Forms;
+using IWshRuntimeLibrary;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -7,7 +8,7 @@ using System.Threading;
 using System.Web;
 using System.Windows.Forms;
 
-namespace KDB
+namespace KDB_Edge2
 {
     // # 유틸리티 모음
     public static class Utils
@@ -34,8 +35,30 @@ namespace KDB
             return t_rv;
         }
 
+        // ::
+        public static void regCheck_ie()
+        {
+/*
+            if (InternetExplorerBrowserEmulation.GetBrowserEmulationVersion() != version)
+            {
+                // apply the new emulation version
+                if (!InternetExplorerBrowserEmulation.SetBrowserEmulationVersion(version))
+                {
+                    MessageBox.Show("Failed to update browser emulation version.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    // now destroy and recreate the WebBrowser control
+                    Application.Restart();
+                    Environment.Exit(-1);
+                }
+            }*/
 
-        private const string _Caption = "알림";
+            InternetExplorerBrowserEmulation.SetBrowserEmulationVersion(BrowserEmulationVersion.Version8);
+        }
+
+
+        private const string _Caption = "# 알림";
         // ::
         public static void MsgBox(string str)
         {
@@ -60,7 +83,7 @@ namespace KDB
             }
             else
             {
-                MessageBox.Show("이미 복사가가 진행중 입니다. 잠시후 다시 시도하여 주세요.", "# 알림");
+                Utils.MsgBox("이미 복사가가 진행중 입니다. 잠시후 다시 시도하여 주세요.");
             }
         }
 
@@ -119,7 +142,7 @@ namespace KDB
             {
                 string t_name = Path.GetFileName(Application.ExecutablePath);
                 string t_targetPath = Path.Combine(destPath, t_name);
-                //Debug.Log("t_targetPath: " + t_targetPath);
+                //Utils.MsgBox("t_targetPath: " + t_targetPath);
 
                 try
                 {
