@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<Item>
+	  <Name>Google</Name>
+	  <Url>https://www.google.co.kr/</Url>
+	  <Accounts>
+		<AItem>
+		  <Id>qwe</Id>
+		  <Pw>123</Pw> 
+		</AItem>
+	  </Accounts>
+	</Item>
+	<Item>
+	  <Name>Google</Name>
+	  <Url>https://www.google.co.kr/</Url>
+	  <Accounts>
+		<AItem>
+		  <Id>qwe</Id>
+		  <Pw>123</Pw> 
+		</AItem>
+	  </Accounts>
+	</Item>
+</Root> 

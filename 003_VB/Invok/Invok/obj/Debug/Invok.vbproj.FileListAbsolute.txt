@@ -1,0 +1,32 @@
+c:\users\jhb0b\documents\visual studio 2013\Projects\Invok\Invok\bin\Debug\Invok.exe.config
+c:\users\jhb0b\documents\visual studio 2013\Projects\Invok\Invok\bin\Debug\Invok.exe
+c:\users\jhb0b\documents\visual studio 2013\Projects\Invok\Invok\bin\Debug\Invok.pdb
+c:\users\jhb0b\documents\visual studio 2013\Projects\Invok\Invok\bin\Debug\Invok.xml
+c:\users\jhb0b\documents\visual studio 2013\Projects\Invok\Invok\obj\Debug\Invok.FrmRoot.resources
+c:\users\jhb0b\documents\visual studio 2013\Projects\Invok\Invok\obj\Debug\Invok.Resources.resources
+c:\users\jhb0b\documents\visual studio 2013\Projects\Invok\Invok\obj\Debug\Invok.vbproj.GenerateResource.Cache
+c:\users\jhb0b\documents\visual studio 2013\Projects\Invok\Invok\obj\Debug\Invok.exe
+c:\users\jhb0b\documents\visual studio 2013\Projects\Invok\Invok\obj\Debug\Invok.xml
+c:\users\jhb0b\documents\visual studio 2013\Projects\Invok\Invok\obj\Debug\Invok.pdb
+C:\Users\jhb0b\Documents\Visual Studio 2013\Projects\Invok\Invok\obj\Debug\Interop.ShockwaveFlashObjects.dll
+C:\Users\jhb0b\Documents\Visual Studio 2013\Projects\Invok\Invok\obj\Debug\AxInterop.ShockwaveFlashObjects.dll
+C:\Users\jhb0b\Documents\Visual Studio 2013\Projects\Invok\Invok\obj\Debug\Invok.vbproj.ResolveComReference.cache
+C:\Users\jhb0b\Documents\Visual Studio 2013\Projects\Invok\Invok\bin\Debug\FlaRoot.swf
+C:\Users\jhb0b\Documents\Visual Studio 2013\Projects\Invok\Invok\obj\Debug\Invok.vbprojResolveAssemblyReference.cache
+C:\Users\jhb0b\Documents\Visual Studio 2013\Projects\Invok\Invok\obj\Debug\Invok.FrmLogin.resources
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\bin\Debug\Invok.exe.config
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\obj\Debug\Interop.ShockwaveFlashObjects.dll
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\obj\Debug\AxInterop.ShockwaveFlashObjects.dll
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\obj\Debug\Invok.vbproj.ResolveComReference.cache
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\obj\Debug\Invok.exe
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\obj\Debug\Invok.xml
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\obj\Debug\Invok.pdb
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\bin\Debug\FlaRoot.swf
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\bin\Debug\Invok.exe
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\bin\Debug\Invok.pdb
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\bin\Debug\Invok.xml
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\obj\Debug\Invok.vbprojResolveAssemblyReference.cache
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\obj\Debug\Invok.FrmLogin.resources
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\obj\Debug\Invok.FrmRoot.resources
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\obj\Debug\Invok.Resources.resources
+D:\Git_HobisWork\_Works\003_VB\Invok\Invok\obj\Debug\Invok.vbproj.GenerateResource.Cache

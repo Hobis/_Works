@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <Name><![CDATA[방송 도우미]]></Name>
+  <TopMost>False</TopMost>
+  <Volue>100</Volue>
+  
+  <TWorks>
+    <Item No="1" Type="SoundPlay">
+      <Color>#000000</Color>
+      <Text>별풍선*100 재생</Text>
+      <Discription>별풍선 100개 받았을시 재생되는 사운드 설정</Discription>
+      <File>
+        <Path><![CDATA[./Data/Sounds/아이유-너랑 나.mp3]]></Path>
+        <StartPosition>0</StartPosition>
+        <EndPosition>0</EndPosition>
+        <Loop>0</Loop>
+      </File>
+    </Item>
+  </TWorks>
+</Root>

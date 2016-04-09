@@ -1,4 +1,11 @@
-﻿using System;
+﻿/**
+@이름: 신한생명 약관CD 제작
+@작성자: 정희범
+@일자: 2014-07-19
+@본 프로그램의 저작권은 KDC(한국 디지털 컨텐츠)에 있습니다.
+*/
+
+using System;
 using System.Configuration;
 using System.Diagnostics;
 using System.Drawing;

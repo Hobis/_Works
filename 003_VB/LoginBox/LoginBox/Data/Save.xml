@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+	<Item>
+		<Url>http://www.naver.com/</Url>
+		<Id>jhb0b</Id>
+		<Pw>87654321</Pw>
+	</Item>
+	<Item>
+		<Url>https://www.google.co.kr/</Url>
+		<Id>hobisjung@gmail.com</Id>
+		<Pw>87654321</Pw>
+	</Item>
+	<Item>
+		<Url>http://www.naver.com/</Url>
+		<Id>jhb0b</Id>
+		<Pw>87654321</Pw>
+	</Item>
+</Root>
